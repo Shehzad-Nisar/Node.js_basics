@@ -1,9 +1,9 @@
 const http = require('http');
 const fs = require('fs');
 
-const server = http.createServer((req, res)=>{
-    res.setHeader("Content-Type" , "text/html");
-    if(req.url === '/'){
+const server = http.createServer((req, res) => {
+    res.setHeader("Content-Type", "text/html");
+    if (req.url === '/') {
         return res.end(`
             <!DOCTYPE html>
 <html>
@@ -36,27 +36,27 @@ const server = http.createServer((req, res)=>{
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 My Website</p>
+        <p>© 2026 shehzad nisar</p>
     </footer>
 
 </body>
 </html>`)
-    } else if (req.url === '/about'){
+    } else if (req.url === '/about') {
         return res.end(`
             <h1>welcome to about section.
             
             `)
-        
-    } else if (req.url === '/services'){
+
+    } else if (req.url === '/services') {
         return res.end(`
             <h1>welcome to services section.
             
             `)
-        
-    } else if (req.url === '/contact'){
+
+    } else if (req.url === '/contact') {
         return res.end(`
             <h1>welcome to contact section.`)
-    } else if(req.url === '/addToCart'){
+    } else if (req.url === '/addToCart') {
         return res.end(`
             <h1> Give us your details <h1>
             <form action= "/submit-details" method= "POST">
@@ -71,16 +71,16 @@ const server = http.createServer((req, res)=>{
             
             
             `)
-    } else if (req.url.toLowerCase() === '/submit-details' && req.method == 'POST'){
-        fs.writeFileSync("details.txt",'Mubashir Abbasi');
+    } else if (req.url.toLowerCase() === '/submit-details' && req.method == 'POST') {
+        fs.writeFileSync("details.txt", 'Mubashir Abbasi');
         res.setHeader('location', '/')
         res.statusCode = 302;
         res.end();
     }
-    } 
+}
 
 )
 
-server.listen(3005,()=>{
+server.listen(3005, () => {
     console.log("server is listening at 3005.")
 })
