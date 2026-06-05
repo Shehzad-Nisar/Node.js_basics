@@ -1,0 +1,86 @@
+const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req, res)=>{
+    res.setHeader("Content-Type" , "text/html");
+    if(req.url === '/'){
+        return res.end(`
+            <!DOCTYPE html>
+<html>
+<head>
+    <title>My Homepage</title>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/about">About</a> |
+        <a href="/services">Services</a> |
+        <a href="/contact">Contact</a>
+        <a href="/addToCart">Add to Cart</a>
+    </nav>
+
+    <hr>
+
+    <!-- Main Content -->
+    <h1>Welcome to My Website</h1>
+
+    <p>
+        This is a simple homepage created with HTML.
+    </p>
+
+    <button>Learn More</button>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 My Website</p>
+    </footer>
+
+</body>
+</html>`)
+    } else if (req.url === '/about'){
+        return res.end(`
+            <h1>welcome to about section.
+            
+            `)
+        
+    } else if (req.url === '/services'){
+        return res.end(`
+            <h1>welcome to services section.
+            
+            `)
+        
+    } else if (req.url === '/contact'){
+        return res.end(`
+            <h1>welcome to contact section.`)
+    } else if(req.url === '/addToCart'){
+        return res.end(`
+            <h1> Give us your details <h1>
+            <form action= "/submit-details" method= "POST">
+            <input type= "text" id= "name" name="name" placeholder= "enter your name"><br><br>
+            <label for= "male">Gender</label>
+            <input type= "radio" name= "gender" id= "male" value = "male">
+            <label for= "male">male</label>
+            <input type= "radio" name= "gender" id= "female" value = "female">
+            <label for= "male">female</label> <br><br>
+            <input type= "submit" value= "Submit">
+            </form>
+            
+            
+            `)
+    } else if (req.url.toLowerCase() === '/submit-details' && req.method == 'POST'){
+        fs.writeFileSync("details.txt",'Mubashir Abbasi');
+        res.setHeader('location', '/')
+        res.statusCode = 302;
+        res.end();
+    }
+    } 
+
+)
+
+server.listen(3005,()=>{
+    console.log("server is listening at 3005.")
+})
