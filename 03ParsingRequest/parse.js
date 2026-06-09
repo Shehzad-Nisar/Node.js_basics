@@ -82,6 +82,14 @@ const server = http.createServer((req, res)=>{
             req.on("end", ()=>{
                 const fullBody = Buffer.concat(body).toString();
                 console.log(fullBody);
+                const param = new URLSearchParams(fullBody);
+
+                const bodyObj = {};
+                for(const [key, value] of param.entries()){
+                    bodyObj[key] = value;
+
+                }
+                console.log(bodyObj);
             })
 
             res.setHeader('location', '/')
