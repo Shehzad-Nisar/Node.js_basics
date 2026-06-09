@@ -72,6 +72,10 @@ const server = http.createServer((req, res)=>{
                 
                 `)
         } else if (req.url.toLowerCase() === '/submit-details' && req.method == 'POST') {
+
+            req.on("data", (chunk)=>{
+                console.log(chunk);
+            })
             fs.writeFileSync("details.txt", 'Mubashir Abbasi');
             res.setHeader('location', '/')
             res.statusCode = 302;
