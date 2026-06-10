@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+
 const addition = require('.//addition')
 
 const reqHandler = (req, res)=>{
@@ -21,7 +22,7 @@ const reqHandler = (req, res)=>{
           </body>
           </html>
           `)
-  } else if(req.url === '/calculator'){
+  } else if(req.url.toLowerCase() === '/calculator'){
         return res.end(`
             <h1>Mini Calculator</h1>
             <br> <br>
@@ -34,7 +35,7 @@ const reqHandler = (req, res)=>{
        
             </form>
             `)
-  } else if(req.url === '/calculate-result' && req.method === 'POST'){
+  } else if(req.url.toLowerCase() === '/calculate-result' && req.method === 'POST'){
 
     const body = [];
     req.on('data', (chunk)=>{
