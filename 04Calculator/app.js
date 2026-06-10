@@ -1,5 +1,5 @@
 const http = require('http');
-const reqHandler = require('./user');
+const reqHandler = require('./handler');
 
 const server = http.createServer(reqHandler);
 

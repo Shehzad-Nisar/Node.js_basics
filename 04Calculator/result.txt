@@ -1,1 +1,1 @@
-Number1: 22 + Number2: 333 = Result: 355
+Number1: 876 + Number2: 987 = Result: 1863
