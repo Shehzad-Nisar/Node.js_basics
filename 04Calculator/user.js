@@ -33,9 +33,34 @@ const reqHandler = (req, res)=>{
             </form>
             `)
   } else if(req.url === '/calculate-result' && req.method === 'POST'){
+
+    const body = [];
+    req.on('data', (chunk)=>{
+        body.push(chunk);
+        //console.log(chunk);
+    })
+
+    req.on('end', ()=>{
+        const fullBody = Buffer.concat(body).toString();
+        //console.log(fullBody);
+
+        const params = new URLSearchParams(fullBody);
+        // console.log(params)
+
+        const bodyObject = {};
+
+        for(const [key , value] of params){
+            bodyObject[key] = value;
+
+        }
+        //console.log("object obtained from params")
+        //console.log(bodyObject);
+        
+        
+    })
         
 
-
+    
     return res.end(`
         <h1>Result</h1>
         `)
