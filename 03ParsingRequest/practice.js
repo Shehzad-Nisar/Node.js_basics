@@ -90,17 +90,21 @@ if (req.url === '/') {
 
         req.on('end', ()=>{
             const fullBody = Buffer.concat(body).toString();
-            console.log(fullBody);
+            // console.log(fullBody);
 
             // convert data into objects
 
             const params =  new URLSearchParams(fullBody);
-            const bodyObj = {};
-            for(const [key, value] of params.entries()){
-                bodyObj[key] = value;
+            // const bodyObj = {};
+            // for(const [key, value] of params.entries()){
+            //     bodyObj[key] = value;
                 
-            }
-            console.log(bodyObj);
+            // }
+            // console.log(bodyObj);
+
+            const objectBody = Object.fromEntries(params);
+
+            console.log(objectBody);
             
 
         })
