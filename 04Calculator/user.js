@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+const addition = require('.//addition')
+
 const reqHandler = (req, res)=>{
 
   if(req.url === '/'){
@@ -59,21 +61,21 @@ const reqHandler = (req, res)=>{
 
         //console.log(bodyObject.num1 + bodyObject.num2);
 
-        const sum = () =>{
-            const add = Number(bodyObject.num1) + Number(bodyObject.num2);
-            console.log(add);
-        }
-        sum();
+        const result = addition(
+            Number(bodyObject.num1), Number(bodyObject.num2)
+        );
 
         
-        
-    })
-        
-
-    
     return res.end(`
         <h1>Result</h1>
-        `)
+        <h2> Addition of ${bodyObject.num1} and ${bodyObject.num2} is equal to <b> ${result} </b> </h2>
+        `)   
+    })
+        
+    //console.log("hello from india")
+
+    
+    
   }
 }
 
