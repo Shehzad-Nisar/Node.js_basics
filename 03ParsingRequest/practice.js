@@ -1,11 +1,12 @@
 const http = require('http');
 const fs = require('fs');
+const { json } = require('stream/consumers');
 
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method);
 
-if (req.url === '/') {
-    return res.end(`
+    if (req.url === '/') {
+        return res.end(`
          <!DOCTYPE html>
          <html lang="en">
          <head>
@@ -27,7 +28,7 @@ if (req.url === '/') {
          </html>
         
         `)
-    } else if(req.url === '/about'){
+    } else if (req.url === '/about') {
         return res.end(`
          <!DOCTYPE html>
          <html lang="en">
@@ -41,7 +42,7 @@ if (req.url === '/') {
          </html>
         
         `)
-    } else if (req.url === '/products'){
+    } else if (req.url === '/products') {
         return res.end(`
          <!DOCTYPE html>
          <html lang="en">
@@ -55,7 +56,7 @@ if (req.url === '/') {
          </html>
         
         `)
-    } else if(req.url === '/details'){
+    } else if (req.url === '/details') {
         return res.end(`
             <!DOCTYPE html>
             <html lang="en">
@@ -81,49 +82,47 @@ if (req.url === '/') {
             </html>
             
             `)
-    } else if(req.url.toLocaleLowerCase() === '/submit-details' && req.method == 'POST'){
+    } else if (req.url.toLocaleLowerCase() === '/submit-details' && req.method == 'POST') {
         const body = [];
-        req.on('data', (chunk)=>{
+        req.on('data', (chunk) => {
             body.push(chunk);
         })
-        
 
-        req.on('end', ()=>{
+
+        req.on('end', () => {
             const fullBody = Buffer.concat(body).toString();
             // console.log(fullBody);
 
             // convert data into objects
 
-            const params =  new URLSearchParams(fullBody);
+            const params = new URLSearchParams(fullBody);
             // const bodyObj = {};
             // for(const [key, value] of params.entries()){
             //     bodyObj[key] = value;
-                
+
             // }
             // console.log(bodyObj);
 
             const objectBody = Object.fromEntries(params);
 
             console.log(objectBody);
-            fs.writeFile(
-        'details.txt',
-        JSON.stringify(objectBody),
-        (err) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('Data saved successfully');
-            }
-        }
-    );
             
+            // writing the object data into file 
+            
+            let fileName = 'details.txt';
+            fs.writeFileSync(fileName, JSON.stringify(objectBody))
+            console.log(`Data saved successfully to file ${fileName}.`)
+
+            
+        
+
 
         })
 
         res.setHeader('location', '/');
         res.statusCode = 302;
         res.end();
-        
+
 
     }
 
