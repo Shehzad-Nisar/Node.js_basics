@@ -105,6 +105,17 @@ if (req.url === '/') {
             const objectBody = Object.fromEntries(params);
 
             console.log(objectBody);
+            fs.writeFile(
+        'details.txt',
+        JSON.stringify(objectBody),
+        (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Data saved successfully');
+            }
+        }
+    );
             
 
         })
