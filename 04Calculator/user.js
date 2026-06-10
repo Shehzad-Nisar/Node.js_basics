@@ -51,10 +51,20 @@ const reqHandler = (req, res)=>{
 
         for(const [key , value] of params){
             bodyObject[key] = value;
+            
 
         }
         //console.log("object obtained from params")
         //console.log(bodyObject);
+
+        //console.log(bodyObject.num1 + bodyObject.num2);
+
+        const sum = () =>{
+            const add = Number(bodyObject.num1) + Number(bodyObject.num2);
+            console.log(add);
+        }
+        sum();
+
         
         
     })
