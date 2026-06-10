@@ -65,6 +65,19 @@ const reqHandler = (req, res)=>{
             Number(bodyObject.num1), Number(bodyObject.num2)
         );
 
+        //saved to the file as well as :
+
+        fs.writeFile("result.txt", `Number1: ${bodyObject.num1} + Number2: ${bodyObject.num2} = Result: ${result}`, 
+            
+            (err)=>{
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log("saved successfully.")
+                }
+
+        })
+
         
     return res.end(`
         <h1>Result</h1>
