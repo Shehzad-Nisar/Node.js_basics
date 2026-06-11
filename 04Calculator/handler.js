@@ -16,7 +16,7 @@ const reqHandler = (req, res)=>{
           </head>
           <body>
               <header><h1>Welcome to Mini Calculator.</h1></header>
-               <a href="/calculator">Calculator</a>
+               <a href="/calculator">Go to Calculator</a>
               
           
           </body>
