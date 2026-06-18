@@ -1,0 +1,16 @@
+{
+  "name": "nmp-test",
+  "version": "1.0.0",
+  "description": "create a project ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "chal-ja-bhai": "nodemon app.js"
+  },
+  "author": "shehzad nisar",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
