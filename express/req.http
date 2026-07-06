@@ -1,0 +1,10 @@
+### Create a Product
+
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+    "name": "Keyboard",
+    "price": 2500
+}
+
